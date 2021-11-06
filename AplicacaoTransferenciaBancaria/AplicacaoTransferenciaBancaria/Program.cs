@@ -23,13 +23,13 @@ namespace AplicacaoTransferenciaBancaria
                         InserirConta();
                         break;
                     case "3":
-                        //Transferir();
+                        Transferir();
                         break;
                     case "4":
-                        //Sacar();
+                        Sacar();
                         break;
                     case "5":
-                        //Depositar();
+                        Depositar();
                         break;
                     case "C":
                         Console.Clear();
@@ -44,7 +44,7 @@ namespace AplicacaoTransferenciaBancaria
             Console.WriteLine("Obrigado por utilizar nossos serviços.");
             Console.ReadLine();
         }
-       
+
         private static string ObterOpcaoDoUsuario()
         {
             Console.WriteLine();
@@ -87,6 +87,42 @@ namespace AplicacaoTransferenciaBancaria
                                         nome: entradaNome);
 
             ListContas.Add(novaConta);
+        }
+
+        private static void Sacar()
+        {
+            Console.Write("Digite o número da conta: ");
+            int indiceConta = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor a ser sacado: ");
+            double valorSaque = double.Parse(Console.ReadLine());
+
+            ListContas[indiceConta].Sacar(valorSaque);
+        }
+
+        private static void Depositar()
+        {
+            Console.Write("Digite i número da conta: ");
+            int indiceConta = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor a ser depositado: ");
+            double valorDeposito = double.Parse(Console.ReadLine());
+
+            ListContas[indiceConta].Depositar(valorDeposito);
+        }
+
+        private static void Transferir()
+        {
+            Console.Write("Digite o numero da conta de origem: ");
+            int indiceContaOrigem = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o número da conta de destino: ");
+            int indiceContaDestino = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o valor a ser transferido: ");
+            double valorTransferencia = double.Parse(Console.ReadLine());
+
+            ListContas[indiceContaOrigem].Transferir(valorTransferencia, ListContas[indiceContaDestino]);
         }
 
         private static void ListarContas()
